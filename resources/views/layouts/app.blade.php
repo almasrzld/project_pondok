@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>
-            Pondok Pesantren
+            Darul Ulum
             @hasSection('title')
                 | @yield('title')
             @endif
@@ -22,7 +22,7 @@
         @include('partials.base.navbar')
         
         <main>
-        @yield('content')
+            @yield('content')
         </main>
 
         @include('partials.base.footer')

@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Login')
+@section('title', 'Register')
 
 @section('content')
 <div class="flex min-h-screen">
@@ -13,7 +13,7 @@
             </div>
 
             <h1 class="text-3xl font-bold mb-4">
-                Selamat Datang di Aplikasi PonPes Darul Ulum
+                Pendaftaran Akun PonPes Darul Ulum
             </h1>
 
             <h2 class="text-lg mb-4">
@@ -21,8 +21,8 @@
             </h2>
 
             <p class="text-sm leading-relaxed max-w-md opacity-90">
-                Darul Ulum App adalah sistem informasi berbasis digital yang digunakan untuk mengelola proses pendaftaran,
-                pendataan, dan administrasi santri baru di Kabupaten Grobogan secara terstruktur dan transparan.
+                Silakan lengkapi data diri untuk membuat akun dan melanjutkan
+                proses pendaftaran Pondok Pesantren Darul Ulum.
             </p>
         </div>
 
@@ -37,15 +37,23 @@
         <div class="w-full max-w-md">
 
             <h2 class="text-2xl font-semibold mb-6 text-gray-800">
-                Login PonPes Darul Ulum
+                Daftar Calon Santri
             </h2>
 
             <div class="bg-indigo-50 text-indigo-600 text-sm p-3 rounded mb-6">
-                Masukan Email dan Password untuk mengakses Aplikasi PonPes Darul Ulum.
+                Lengkapi form di bawah untuk membuat akun baru
             </div>
 
-            <form method="POST" action="{{ route('login.process') }}" class="space-y-4">
+            <form method="POST" action="{{ route('register.process') }}" class="space-y-4">
                 @csrf
+
+                <div>
+                    <label class="text-sm text-gray-600">Nama Lengkap</label>
+                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Nama Lengkap"
+                        class="w-full mt-1 px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-200 focus:outline-none @error('name') border-red-500 @enderror">
+                    <x-input-error :messages="$errors->get('name')" />
+                </div>
+
                 <div>
                     <label class="text-sm text-gray-600">Email</label>
                     <input type="text" name="email" value="{{ old('email') }}" placeholder="Email"
@@ -60,23 +68,25 @@
                     <x-input-error :messages="$errors->get('password')" />
                 </div>
 
+                <div>
+                    <label class="text-sm text-gray-600">Konfirmasi Password</label>
+                    <input type="password" name="password_confirmation" placeholder="Konfirmasi Password"
+                        class="w-full mt-1 px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-200 focus:outline-none">
+                </div>
+
                 <div class="flex items-center justify-between pt-4">
-                    <a href="{{ route('password.request') }}" class="text-sm text-gray-600 hover:underline">
-                        Lupa Kata Sandi
+                    <p class="text-sm text-gray-600">
+                        Sudah punya akun? <a href="{{ route('login') }}"
+                        class="text-sm text-indigo-600 hover:underline cursor-pointer">
+                        Login
                     </a>
+                    </p>
 
                     <button type="submit"
                         class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg">
-                        Login
+                        Daftar
                     </button>
                 </div>
-
-                <p class="text-sm text-gray-600 mt-6">
-                    Belum punya akun? <a href="{{ route('register') }}"
-                    class="text-sm text-indigo-600 hover:underline cursor-pointer">
-                    Daftar disini
-                </a>
-                </p>
             </form>
 
         </div>

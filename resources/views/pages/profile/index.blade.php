@@ -4,6 +4,6 @@
 
 @section('content')
     <div class="container">
-        <h1 class="text-3xl font-bold">Selamat datang di halaman DASHBOARD</h1>
+        <h1 class="text-3xl font-bold">Selamat datang di halaman profil</h1>
     </div>
 @endsection
