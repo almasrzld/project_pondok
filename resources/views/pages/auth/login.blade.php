@@ -53,12 +53,7 @@
                     <x-input-error :messages="$errors->get('email')" />
                 </div>
 
-                <div>
-                    <label class="text-sm text-gray-600">Password</label>
-                    <input type="password" name="password" placeholder="Password"
-                        class="w-full mt-1 px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-200 focus:outline-none @error('password') border-red-500 @enderror">
-                    <x-input-error :messages="$errors->get('password')" />
-                </div>
+                <x-input-password name="password" label="Password" />
 
                 <div class="flex items-center justify-between pt-4">
                     <a href="{{ route('password.request') }}" class="text-sm text-gray-600 hover:underline">

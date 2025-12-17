@@ -31,10 +31,10 @@ class AuthController extends Controller
 
             // redirect sesuai role
             if (auth()->user()->role === 'admin') {
-                return redirect()->route('dashboard');
+                return redirect()->route('dashboard.index');
             }
 
-            return redirect()->route('pendaftaran')->with('success', 'Login berhasil');
+            return redirect()->route('home')->with('success', 'Login berhasil');
         }
 
         return back()->withErrors([

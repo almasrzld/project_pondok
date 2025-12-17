@@ -46,18 +46,17 @@
                 <input type="hidden" name="token" value="{{ $token }}">
                 <input type="hidden" name="email" value="{{ $email }}">
 
-                <div>
-                    <label class="text-sm text-gray-600">Password Baru</label>
-                    <input type="password" name="password"
-                        class="w-full mt-1 px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-200 focus:outline-none @error('password') border-red-500 @enderror">
-                    <x-input-error :messages="$errors->get('password')" />
-                </div>
+                <x-input-password
+                    name="password"
+                    label="Password Baru"
+                    placeholder="Password Baru"
+                />
 
-                <div>
-                    <label class="text-sm text-gray-600">Konfirmasi Password</label>
-                    <input type="password" name="password_confirmation"
-                        class="w-full mt-1 px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-200 focus:outline-none">
-                </div>
+                <x-input-password
+                    name="password_confirmation"
+                    label="Konfirmasi Password"
+                    placeholder="Konfirmasi Password"
+                />
 
                 <button type="submit"
                     class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg">

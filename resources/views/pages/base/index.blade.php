@@ -1,9 +1,0 @@
-@extends('layouts.app')
-
-@section('title')
-
-@section('content')
-    <div class="container">
-        <h1 class="text-3xl font-bold">Selamat datang di halaman beranda</h1>
-    </div>
-@endsection

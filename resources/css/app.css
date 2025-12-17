@@ -15,6 +15,25 @@
     @apply w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
 }
 
-[x-cloak] {
-    display: none !important;
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+    [x-cloak] {
+        display: none !important;
+    }
+}
+
+@layer components {
+    .container {
+        @apply w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+    }
+
+    .nav-link {
+        @apply text-gray-700 hover:text-gray-900 hover:underline hover:underline-offset-4;
+    }
+
+    .mobile-link {
+        @apply block text-gray-700 hover:text-gray-900 hover:underline hover:underline-offset-4;
+    }
 }
