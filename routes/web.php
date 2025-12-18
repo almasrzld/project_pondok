@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\SantriController;
 use App\Http\Controllers\Dashboard\PembayaranController;
+use App\Http\Controllers\Dashboard\JenisPembayaranController;
 use App\Http\Controllers\Dashboard\RapotController;
 use App\Http\Controllers\Dashboard\AkunController;
 use App\Http\Controllers\Base\PendaftaranController;
@@ -69,6 +70,17 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::get('/pembayaran', [PembayaranController::class, 'index'])
             ->name('pembayaran.index');
+
+        Route::get('/pembayaran/create', [PembayaranController::class, 'create'])
+            ->name('pembayaran.create');
+
+        Route::post('/pembayaran', [PembayaranController::class, 'store'])
+            ->name('pembayaran.store');
+
+        Route::resource(
+            'jenis-pembayaran',
+            JenisPembayaranController::class
+        )->except(['show', 'edit', 'create']);
 
         Route::get('/rapot', [RapotController::class, 'index'])
             ->name('rapot.index');
