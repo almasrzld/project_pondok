@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\SantriController;
+use App\Http\Controllers\Dashboard\PembayaranController;
+use App\Http\Controllers\Dashboard\RapotController;
+use App\Http\Controllers\Dashboard\AkunController;
+use App\Http\Controllers\Base\PendaftaranController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 
@@ -31,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/pendaftaran', [PendaftaranController::class, 'index'])
         ->name('pendaftaran');
 
+    Route::post('/pendaftaran', [PendaftaranController::class, 'store'])
+    ->name('pendaftaran.store');
+
     Route::get('/profile', function () {
         return view('pages.profile.index');
     })->name('profile');
@@ -51,7 +58,21 @@ Route::middleware(['auth', 'role:admin'])
         Route::get('/', [DashboardController::class, 'index'])
             ->name('index');
 
-        Route::get('/santri', function () {
-            return view('pages.dashboard.santri.index');
-        })->name('santri.index');
+        Route::get('/santri', [SantriController::class, 'index'])
+            ->name('santri.index');
+
+        Route::post('/santri/{id}/verify', [SantriController::class, 'verify'])
+            ->name('santri.verify');
+
+        Route::post('/santri/{id}/reject', [SantriController::class, 'reject'])
+            ->name('santri.reject');
+
+        Route::get('/pembayaran', [PembayaranController::class, 'index'])
+            ->name('pembayaran.index');
+
+        Route::get('/rapot', [RapotController::class, 'index'])
+            ->name('rapot.index');
+
+        Route::get('/akun', [AkunController::class, 'index'])
+            ->name('akun.index');
     });

@@ -30,30 +30,30 @@
                 : 'hover:bg-indigo-50 hover:text-indigo-600' }}">
             Santri
         </a>
-{{--
-        <a href="{{ route('pembayaran.index') }}"
+
+        <a href="{{ route('dashboard.pembayaran.index') }}"
            class="block px-3 py-2 rounded
-           {{ request()->routeIs('pembayaran*') 
+           {{ request()->routeIs('dashboard.pembayaran*') 
                 ? 'bg-indigo-50 text-indigo-600 font-semibold' 
                 : 'hover:bg-indigo-50 hover:text-indigo-600' }}">
             Pembayaran
         </a>
 
-        <a href="{{ route('rapot.index') }}"
+        <a href="{{ route('dashboard.rapot.index') }}"
            class="block px-3 py-2 rounded
-           {{ request()->routeIs('rapot*') 
+           {{ request()->routeIs('dashboard.rapot*') 
                 ? 'bg-indigo-50 text-indigo-600 font-semibold' 
                 : 'hover:bg-indigo-50 hover:text-indigo-600' }}">
             Rapot
         </a>
 
-        <a href="{{ route('akun.index') }}"
+        <a href="{{ route('dashboard.akun.index') }}"
            class="block px-3 py-2 rounded
-           {{ request()->routeIs('akun*') 
+           {{ request()->routeIs('dashboard.akun*') 
                 ? 'bg-indigo-50 text-indigo-600 font-semibold' 
                 : 'hover:bg-indigo-50 hover:text-indigo-600' }}">
             Akun
         </a>
---}}
+
     </nav>
 </aside>

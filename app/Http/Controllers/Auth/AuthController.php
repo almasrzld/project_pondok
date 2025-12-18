@@ -29,12 +29,14 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
+            toastr()->success('Login berhasil');
+
             // redirect sesuai role
             if (auth()->user()->role === 'admin') {
                 return redirect()->route('dashboard.index');
             }
 
-            return redirect()->route('home')->with('success', 'Login berhasil');
+            return redirect()->route('home');
         }
 
         return back()->withErrors([
@@ -68,10 +70,11 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'santri', // default
+            'role' => 'santri',
         ]);
 
-        return redirect()->route('login')
-            ->with('success', 'Registrasi berhasil, silakan login.');
+        toastr()->success('Registrasi berhasil, silakan login');
+
+        return redirect()->route('login');
     }
 }

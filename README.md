@@ -21,6 +21,7 @@ Project ini menerapkan **role-based access control (RBAC)** dengan dua peran uta
 -   Halaman home santri
 -   Halaman profil
 -   Pendaftaran santri (Calon Santri)
+-   Informasi status pendaftaran (Pending, Diterima, Ditolak)
 
 ### 🛠️ Admin
 
