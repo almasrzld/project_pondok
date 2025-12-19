@@ -23,6 +23,7 @@
                 <x-slot name="trigger">
                     <button
                         @click="open = true"
+                        x-init="@if($errors->any()) open = true @endif"
                         class="bg-blue-600 hover:bg-blue-700 text-white
                             px-4 py-2 rounded-lg text-sm font-medium"
                     >
