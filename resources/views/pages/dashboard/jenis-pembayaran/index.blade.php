@@ -24,7 +24,7 @@
                     <button
                         @click="open = true"
                         x-init="@if($errors->any()) open = true @endif"
-                        class="bg-blue-600 hover:bg-blue-700 text-white
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white
                             px-4 py-2 rounded-lg text-sm font-medium"
                     >
                         + Tambah Jenis
@@ -38,7 +38,7 @@
                 >
                     @csrf
 
-                    <div>
+                    <div class="space-y-4">
                         <label class="block text-sm font-medium mb-1">
                             Nama Jenis Pembayaran
                         </label>
@@ -50,6 +50,18 @@
                             placeholder="Contoh: SPP Bulanan"
                         >
                         <x-input-error :messages="$errors->get('nama')" />
+
+                        <label class="block text-sm font-medium mb-1">
+                            Harga
+                        </label>
+                        <input
+                            type="number"
+                            name="harga"
+                            class="w-full border rounded-lg px-4 py-2 text-sm
+                                focus:ring focus:ring-indigo-200 @error('harga') border-red-500 @enderror"
+                            placeholder="Contoh: 500000"
+                        >
+                        <x-input-error :messages="$errors->get('harga')" />
                     </div>
 
                     <div class="flex justify-end gap-2">
@@ -72,6 +84,7 @@
                     <tr>
                         <th class="px-4 py-3 text-left w-16">No</th>
                         <th class="px-4 py-3 text-left">Nama Jenis Pembayaran</th>
+                        <th class="px-4 py-3 text-left">Harga</th>
                         <th class="px-4 py-3 text-center w-32">Aksi</th>
                     </tr>
                 </thead>
@@ -85,6 +98,10 @@
 
                             <td class="px-4 py-3 font-medium text-gray-800">
                                 {{ $item->nama }}
+                            </td>
+
+                            <td class="px-4 py-3">
+                                Rp {{ number_format($item->harga, 0, ',', '.') }}
                             </td>
 
                             <td class="px-4 py-3 flex justify-center gap-2">
@@ -118,9 +135,20 @@
                                                 name="nama"
                                                 value="{{ $item->nama }}"
                                                 class="w-full border rounded-lg px-4 py-2 text-sm
-                                                    focus:ring focus:ring-indigo-200"
-                                                required
+                                                    focus:ring focus:ring-indigo-200 @error('nama') border-red-500 @enderror"
                                             >
+                                            <x-input-error :messages="$errors->get('nama')" />
+                                            <label class="block text-sm font-medium mb-1">
+                                                Harga
+                                            </label>
+                                            <input
+                                                type="number"
+                                                name="harga"
+                                                value="{{ $item->harga }}"
+                                                class="w-full border rounded-lg px-4 py-2 text-sm
+                                                    focus:ring focus:ring-indigo-200 @error('harga') border-red-500 @enderror"
+                                            >
+                                            <x-input-error :messages="$errors->get('harga')" />
                                         </div>
 
                                         <div class="flex justify-end gap-2">
@@ -143,7 +171,6 @@
                                     </form>
                                 </x-modal>
 
-                                {{-- MODAL HAPUS (punyamu tadi) --}}
                                 <x-modal title="Hapus Jenis Pembayaran">
                                     <x-slot name="trigger">
                                         <button

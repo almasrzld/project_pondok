@@ -28,13 +28,18 @@ class JenisPembayaranController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:50|unique:jenis_pembayarans,nama',
+            'harga' => 'required|numeric|min:0',
         ], [
             'nama.required' => 'Nama jenis pembayaran wajib diisi',
             'nama.unique'   => 'Nama jenis pembayaran sudah ada dalam database',
+            'harga.required' => 'Harga jenis pembayaran wajib diisi',
+            'harga.numeric'  => 'Harga jenis pembayaran harus berupa angka',
+            'harga.min'      => 'Harga jenis pembayaran tidak boleh kurang dari 0',
         ]);
 
         JenisPembayaran::create([
             'nama' => $request->nama,
+            'harga' => $request->harga,
         ]);
 
         toastr()->success('Jenis pembayaran berhasil ditambahkan');
@@ -45,13 +50,18 @@ class JenisPembayaranController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:50|unique:jenis_pembayarans,nama,' . $id,
+            'harga' => 'required|numeric|min:0',
         ], [
             'nama.required' => 'Nama jenis pembayaran wajib diisi',
             'nama.unique'   => 'Nama jenis pembayaran sudah ada dalam database',
+            'harga.required' => 'Harga jenis pembayaran wajib diisi',
+            'harga.numeric'  => 'Harga jenis pembayaran harus berupa angka',
+            'harga.min'      => 'Harga jenis pembayaran tidak boleh kurang dari 0',
         ]);
 
         JenisPembayaran::findOrFail($id)->update([
             'nama' => $request->nama,
+            'harga' => $request->harga,
         ]);
 
         toastr()->success('Jenis pembayaran berhasil diperbarui');

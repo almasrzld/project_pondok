@@ -68,14 +68,10 @@ Route::middleware(['auth', 'role:admin'])
         Route::post('/santri/{id}/reject', [SantriController::class, 'reject'])
             ->name('santri.reject');
 
-        Route::get('/pembayaran', [PembayaranController::class, 'index'])
-            ->name('pembayaran.index');
-
-        Route::get('/pembayaran/create', [PembayaranController::class, 'create'])
-            ->name('pembayaran.create');
-
-        Route::post('/pembayaran', [PembayaranController::class, 'store'])
-            ->name('pembayaran.store');
+        Route::resource(
+            'pembayaran',
+            PembayaranController::class
+        )->except(['show']);
 
         Route::resource(
             'jenis-pembayaran',
