@@ -138,4 +138,13 @@ class PembayaranController extends Controller
 
         return redirect()->route('dashboard.pembayaran.index');
     }
+
+    public function download($id)
+    {
+        $pembayaran = Pembayaran::findOrFail($id);
+
+        return response()->download(
+            storage_path('app/public/' . $pembayaran->bukti_pembayaran)
+        );
+    }
 }

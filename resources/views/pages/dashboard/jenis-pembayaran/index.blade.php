@@ -93,7 +93,7 @@
                     @forelse ($jenisPembayaran as $item)
                         <tr class="bg-white shadow-sm rounded-xl hover:shadow-md transition">
                             <td class="px-4 py-3">
-                                {{ $loop->iteration }}
+                                {{ $loop->index + (($jenisPembayaran->currentPage() - 1) * $jenisPembayaran->perPage()) + 1 }}
                             </td>
 
                             <td class="px-4 py-3 font-medium text-gray-800">

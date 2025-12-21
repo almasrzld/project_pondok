@@ -20,6 +20,7 @@ class Pembayaran extends Model
         'jumlah',
         'tanggal_bayar',
         'status_pembayaran',
+        'bukti_pembayaran',
     ];
 
     public function santri()

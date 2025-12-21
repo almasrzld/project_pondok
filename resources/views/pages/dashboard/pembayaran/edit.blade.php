@@ -70,7 +70,7 @@
 
             {{-- TANGGAL BAYAR --}}
             <div>
-                <label class="block text-sm font-medium mb-1">Tanggal Bayar</label>
+                <label class="block text-sm font-medium mb-1">Batas Bayar</label>
                 <input
                     type="date"
                     name="tanggal_bayar"

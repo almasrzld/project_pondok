@@ -51,8 +51,8 @@
                     <th class="px-4 py-3 text-left">NISN</th>
                     <th class="px-4 py-3 text-left">Pembayaran</th>
                     <th class="px-4 py-3 text-left">Total</th>
+                    <th class="px-4 py-3 text-left">Bukti Bayar</th>
                     <th class="px-4 py-3 text-left">Status</th>
-                    <th class="px-4 py-3 text-left">Tanggal Bayar</th>
                     <th class="px-4 py-3 text-center">Aksi</th>
                 </tr>
             </thead>
@@ -82,6 +82,19 @@
                     </td>
 
                     <td class="px-4 py-3">
+                        @if ($item->bukti_pembayaran)
+                            <a
+                                href="{{ route('dashboard.pembayaran.download', $item->id) }}"
+                                class="text-indigo-600 hover:text-indigo-800 text-xs font-medium underline"
+                            >
+                                Lihat Bukti
+                            </a>
+                        @else
+                            <span class="text-gray-400 text-xs">-</span>
+                        @endif
+                    </td>
+
+                    <td class="px-4 py-3">
                         @if($item->status_pembayaran === 'lunas')
                             <span class="bg-green-50 text-green-700 border px-3 py-1 rounded-full text-xs">
                                 Lunas
@@ -93,16 +106,89 @@
                         @endif
                     </td>
 
-                    <td class="px-4 py-3 text-gray-600">
-                        {{ $item->tanggal_bayar
-                            ? \Carbon\Carbon::parse($item->tanggal_bayar)->format('d M Y')
-                            : '-' }}
-                    </td>
-
                     <td class="px-4 py-3 text-center">
                         <div class="flex justify-center gap-2">
+                            <x-modal title="Detail Pembayaran">
 
-                            {{-- EDIT --}}
+                                <x-slot name="trigger">
+                                    <button
+                                        @click="open = true"
+                                        class="bg-amber-100 text-amber-600 hover:bg-amber-200
+                                            px-3 py-1.5 rounded-lg text-xs font-medium transition"
+                                    >
+                                        Detail
+                                    </button>
+                                </x-slot>
+
+                                <div class="space-y-3 text-sm text-gray-700">
+
+                                    <p><strong>Nama Santri:</strong> {{ $item->santri->user->name }}</p>
+                                    <p><strong>NISN:</strong> {{ $item->santri->nisn }}</p>
+
+                                    <hr>
+
+                                    <p><strong>Jenis Pembayaran:</strong>
+                                        {{ $item->jenisPembayaran->nama ?? '-' }}
+                                    </p>
+
+                                    <p><strong>Bulan / Tahun:</strong>
+                                        {{ $item->bulan }} {{ $item->tahun }}
+                                    </p>
+
+                                    <p><strong>Nominal:</strong>
+                                        Rp {{ number_format($item->jenisPembayaran->harga ?? 0, 0, ',', '.') }}
+                                    </p>
+
+                                    <p>
+                                        <strong>Status:</strong>
+                                        @if ($item->status_pembayaran === 'lunas')
+                                            <span class="px-2 py-1 rounded-full text-xs
+                                                bg-green-50 text-green-700 border border-green-200">
+                                                Lunas
+                                            </span>
+                                        @else
+                                            <span class="px-2 py-1 rounded-full text-xs
+                                                bg-yellow-50 text-yellow-700 border border-yellow-200">
+                                                Pending
+                                            </span>
+                                        @endif
+                                    </p>
+
+                                    <p>
+                                        <strong>Batas Bayar:</strong>
+                                        {{ $item->tanggal_bayar
+                                            ? \Carbon\Carbon::parse($item->tanggal_bayar)->format('d M Y H:i')
+                                            : '-' }}
+                                    </p>
+
+                                    <hr>
+
+                                    <p><strong>Bukti Pembayaran:</strong></p>
+
+                                    @if ($item->bukti_pembayaran)
+                                        <a
+                                            href="{{ asset('storage/' . $item->bukti_pembayaran) }}"
+                                            target="_blank"
+                                            class="block"
+                                        >
+                                            <img
+                                                src="{{ asset('storage/' . $item->bukti_pembayaran) }}"
+                                                alt="Bukti Pembayaran"
+                                                class="w-full max-h-64 object-contain rounded-lg border"
+                                            >
+                                        </a>
+                                        <p class="text-xs text-gray-500 mt-1">
+                                            Klik gambar untuk memperbesar
+                                        </p>
+                                    @else
+                                        <p class="text-gray-400 text-sm">
+                                            Bukti pembayaran belum diunggah
+                                        </p>
+                                    @endif
+
+                                </div>
+                            </x-modal>
+
                             <a
                                 href="{{ route('dashboard.pembayaran.edit', $item->id) }}"
                                 class="bg-green-100 text-green-700 hover:bg-green-200
@@ -111,7 +197,6 @@
                                 Edit
                             </a>
 
-                            {{-- HAPUS --}}
                             <x-modal title="Hapus Pembayaran">
                                 <x-slot name="trigger">
                                     <button

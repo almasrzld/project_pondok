@@ -108,7 +108,7 @@
 
             <div>
                 <label class="block text-sm font-medium mb-1">
-                    Tanggal Bayar
+                    Batas Bayar
                 </label>
                 <input
                     type="date"

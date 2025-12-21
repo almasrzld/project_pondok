@@ -29,9 +29,10 @@
 
                 @auth
                     <li><a href="{{ route('home') }}" class="hover:text-white">Beranda</a></li>
-                    <li><a href="#" class="hover:text-white">Galeri</a></li>
+                    <li><a href="{{ route('gallery') }}" class="hover:text-white">Galeri</a></li>
                     <li><a href="{{ route('pendaftaran') }}" class="hover:text-white">Pendaftaran</a></li>
-                    <li><a href="{{ route('profile') }}" class="hover:text-white">Profil</a></li>
+                    <li><a href="{{ route('pembayaran') }}" class="hover:text-white">Pembayaran</a></li>
+                    <li><a href="{{ route('profile.index') }}" class="hover:text-white">Profil</a></li>
 
                     @if(auth()->user()->role === 'admin')
                         <li>

@@ -68,6 +68,14 @@
             </div>
         </div>
 
+        <a href="{{ route('dashboard.gallery.index') }}"
+           class="block px-3 py-2 rounded
+           {{ request()->routeIs('dashboard.gallery*') 
+                ? 'bg-indigo-50 text-indigo-600 font-semibold' 
+                : 'hover:bg-indigo-50 hover:text-indigo-600' }}">
+            Galeri
+        </a>
+
         <a href="{{ route('dashboard.rapot.index') }}"
            class="block px-3 py-2 rounded
            {{ request()->routeIs('dashboard.rapot*') 

@@ -60,7 +60,8 @@
               Beranda
           </x-nav-link>
           <x-nav-link
-              href="#"
+              href="{{ route('gallery') }}"
+              :active="request()->routeIs('gallery')"
           >
               Galeri
           </x-nav-link>
@@ -69,6 +70,12 @@
               :active="request()->routeIs('pendaftaran')"
           >
               Pendaftaran
+          </x-nav-link>
+          <x-nav-link
+              href="{{ route('pembayaran') }}"
+              :active="request()->routeIs('pembayaran')"
+          >
+              Pembayaran
           </x-nav-link>
           <x-nav-link
               href="#"
@@ -101,7 +108,7 @@
                 <p class="text-xs text-gray-500 truncate">{{ auth()->user()->email }}</p>
               </div>
 
-              <a href="{{ route('profile') }}" class="block px-4 py-2 hover:bg-gray-100">
+              <a href="{{ route('profile.index') }}" class="block px-4 py-2 hover:bg-gray-100">
                 Profil
               </a>
 
@@ -171,7 +178,8 @@
             Beranda
         </x-nav-link>
         <x-nav-link
-            href="#"
+            href="{{ route('gallery') }}"
+            :active="request()->routeIs('gallery')"
             variant="mobile"
             class="block"
         >
@@ -186,6 +194,14 @@
             Pendaftaran
         </x-nav-link>
         <x-nav-link
+            href="{{ route('pembayaran') }}"
+            :active="request()->routeIs('pembayaran')"
+            variant="mobile"
+            class="block"
+        >
+            Pembayaran
+        </x-nav-link>
+        <x-nav-link
             href="#"
             variant="mobile"
             class="block"
@@ -198,7 +214,7 @@
           <div class="container">
             <p class="text-sm font-semibold">{{ auth()->user()->name }}</p>
 
-            <a href="{{ route('profile') }}" class="block text-sm hover:underline">
+            <a href="{{ route('profile.index') }}" class="block text-sm hover:underline">
               Profil
             </a>
 
