@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\PembayaranController as DashboardPembayaranCo
 use App\Http\Controllers\Dashboard\JenisPembayaranController;
 use App\Http\Controllers\Dashboard\GalleryController as DashboardGalleryController;
 use App\Http\Controllers\Dashboard\RapotController;
+use App\Http\Controllers\Dashboard\SemesterController;
 use App\Http\Controllers\Dashboard\AkunController;
 use App\Http\Controllers\Base\GalleryController as BaseGalleryController;
 use App\Http\Controllers\Base\PendaftaranController;
@@ -98,8 +99,9 @@ Route::middleware(['auth', 'role:admin'])
         Route::resource('gallery', DashboardGalleryController::class)
             ->except(['show', 'create']);
 
-        Route::get('/rapot', [RapotController::class, 'index'])
-            ->name('rapot.index');
+        Route::resource('rapot', RapotController::class);
+
+        Route::resource('semester', SemesterController::class);
 
         Route::get('/akun', [AkunController::class, 'index'])
             ->name('akun.index');

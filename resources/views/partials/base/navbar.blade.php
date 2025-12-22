@@ -108,9 +108,9 @@
                 <p class="text-xs text-gray-500 truncate">{{ auth()->user()->email }}</p>
               </div>
 
-              <a href="{{ route('profile.index') }}" class="block px-4 py-2 hover:bg-gray-100">
+              <x-nav-link href="{{ route('profile.index') }}" :active="request()->routeIs('profile.index')" class="block px-4 py-2 hover:bg-gray-100">
                 Profil
-              </a>
+              </x-nav-link>
 
               <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -214,9 +214,9 @@
           <div class="container">
             <p class="text-sm font-semibold">{{ auth()->user()->name }}</p>
 
-            <a href="{{ route('profile.index') }}" class="block text-sm hover:underline">
+            <x-nav-link href="{{ route('profile.index') }}" :active="request()->routeIs('profile.index')" variant="mobile" class="block text-sm hover:underline">
               Profil
-            </a>
+            </x-nav-link>
 
             <form method="POST" action="{{ route('logout') }}">
               @csrf

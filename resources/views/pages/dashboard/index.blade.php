@@ -38,7 +38,7 @@
         @else
             <div class="overflow-x-auto">
                 <table class="w-full text-sm">
-                    <thead class="text-gray-500 border-b">
+                    <thead class="bg-gray-50 text-gray-600 uppercase text-xs tracking-wider">
                         <tr>
                             <th class="text-left py-2">Nama</th>
                             <th class="text-left py-2">NISN</th>

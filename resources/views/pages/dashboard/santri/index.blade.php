@@ -93,7 +93,6 @@
                         <td class="px-4 py-3 text-center">
                             <div class="inline-flex gap-2">
 
-                                {{-- MODAL DETAIL --}}
                                 <x-modal title="Detail Data Santri">
 
                                     <x-slot name="trigger">
@@ -159,7 +158,6 @@
 
                                 @if ($item->status_pendaftaran === 'pending')
 
-                                    {{-- VERIFIKASI --}}
                                     <form action="{{ route('dashboard.santri.verify', $item->id) }}" method="POST">
                                         @csrf
                                         <button
@@ -169,7 +167,6 @@
                                         </button>
                                     </form>
 
-                                    {{-- REJECT MODAL --}}
                                     <x-modal title="Konfirmasi Penolakan">
 
                                         <x-slot name="trigger">

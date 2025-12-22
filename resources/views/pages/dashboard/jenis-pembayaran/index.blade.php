@@ -9,7 +9,7 @@
     x-init="init()"
 >
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <div class="flex items-center justify-between mb-6">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
             <input
                 type="text"
                 placeholder="Cari jenis pembayaran..."
@@ -77,7 +77,6 @@
             </x-modal>
         </div>
 
-        {{-- TABLE --}}
         <div class="overflow-x-auto" id="jenis-pembayaran-table">
             <table class="min-w-full text-sm border-separate border-spacing-y-2">
                 <thead class="bg-gray-50 text-gray-600 uppercase text-xs tracking-wider">

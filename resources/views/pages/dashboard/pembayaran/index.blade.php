@@ -31,7 +31,7 @@
                 <option value="pending"  {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
                 <option value="lunas" {{ request('status') == 'lunas' ? 'selected' : '' }}>Lunas</option>
             </select>
-         </div>
+        </div>
 
         <a
             href="{{ route('dashboard.pembayaran.create') }}"
@@ -41,7 +41,6 @@
         </a>
     </div>
 
-    {{-- TABLE --}}
     <div class="overflow-x-auto" id="pembayaran-table">
         <table class="min-w-full text-sm border-separate border-spacing-y-2">
             <thead class="bg-gray-50 text-gray-600 uppercase text-xs tracking-wider">
@@ -109,7 +108,6 @@
                     <td class="px-4 py-3 text-center">
                         <div class="flex justify-center gap-2">
                             <x-modal title="Detail Pembayaran">
-
                                 <x-slot name="trigger">
                                     <button
                                         @click="open = true"
