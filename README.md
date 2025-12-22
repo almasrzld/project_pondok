@@ -2,7 +2,7 @@
 
 Aplikasi berbasis **Laravel 12** untuk mengelola proses **pendaftaran santri, administrasi, dan dashboard admin** pada Pondok Pesantren Darul Ulum.
 
-Project ini menerapkan **role-based access control (RBAC)** dengan dua peran utama: **Admin** dan **Santri**.
+Aplikasi ini dirancang **siap produksi** dan menerapkan **role-based access control (RBAC)** dengan dua peran utama: **Admin** dan **Santri**.
 
 ---
 
@@ -22,14 +22,16 @@ Project ini menerapkan **role-based access control (RBAC)** dengan dua peran uta
 -   Halaman profil
 -   Pendaftaran santri (Calon Santri)
 -   Informasi status pendaftaran (Pending, Diterima, Ditolak)
+-   Pembayaran
+-   Print rapot _(hanya jika SPP Bulanan lunas)_
 
 ### 🛠️ Admin
 
 -   Dashboard Admin
 -   Manajemen data santri
--   (Planned) Pembayaran
--   (Planned) Rapot
--   (Planned) Manajemen akun
+-   Pembayaran
+-   Rapot
+-   Manajemen akun
 
 ### 🔐 Keamanan
 
@@ -149,14 +151,16 @@ if (auth()->user()->role !== $role) {
 ## 🚀 Cara Menjalankan Project
 
 ```bash
-git clone https://github.com/almasrzld/darul-ulum.git
-cd darul-ulum
+git clone https://github.com/almasrzld/project_pondok.git
+cd project_pondok
 composer install
 npm install
 cp .env.example .env
 php artisan key:generate
 php artisan migrate --seed
-php artisan serve
+php artisan storage:link
+npm run build
+php artisan serve/composer run dev
 ```
 
 Akses aplikasi di:
@@ -164,6 +168,15 @@ Akses aplikasi di:
 ```
 http://127.0.0.1:8000
 ```
+
+## ⚠️ PENTING! (WAJIB SETELAH RUN SISTEM)
+
+Admin **WAJIB** membuat 2 jenis pembayaran:
+
+1. **Daftar Ulang**
+2. **SPP Bulanan**
+
+SPP Bulanan menjadi syarat **cetak rapot**.
 
 ---
 

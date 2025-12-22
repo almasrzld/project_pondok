@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('santri_detail', function (Blueprint $table) {
-            $table->string('nama_wali')->after('no_hp');
-            $table->string('no_hp_wali')->after('nama_wali');
+        Schema::create('jenis_pembayarans', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama', 50)->unique();
+            $table->integer('harga');
+            $table->timestamps();
         });
     }
 
@@ -22,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('santri_detail', function (Blueprint $table) {
-            $table->dropColumn(['nama_wali', 'no_hp_wali']);
-        });
+        Schema::dropIfExists('jenis_pembayarans');
     }
 };

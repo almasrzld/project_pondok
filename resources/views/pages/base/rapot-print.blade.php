@@ -85,17 +85,21 @@
             <tr>
                 <th>No</th>
                 <th>Semester</th>
-                <th>Nilai</th>
-                <th>Keterangan</th>
+                <th>Akademik</th>
+                <th>Akhlak</th>
+                <th>Kehadiran</th>
+                <th>Rata-rata</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($rapot as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->semester->nama ?? '-' }}</td>
-                    <td>{{ $item->nilai ?? '-' }}</td>
-                    <td>{{ $item->keterangan ?? '-' }}</td>
+                    <td>{{ $item->semester->nama }} {{ $item->semester->tahun_ajaran }}</td>
+                    <td>{{ $item->predikat_akademik }}</td>
+                    <td>{{ $item->predikat_akhlak }}</td>
+                    <td>{{ $item->predikat_kehadiran }}</td>
+                    <td>{{ $item->predikat_akhir }}</td>
                 </tr>
             @empty
                 <tr>
