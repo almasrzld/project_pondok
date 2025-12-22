@@ -78,7 +78,8 @@
               Pembayaran
           </x-nav-link>
           <x-nav-link
-              href="#"
+              href="{{ route('rapot') }}"
+              :active="request()->routeIs('rapot')"
           >
               Rapot
           </x-nav-link>
@@ -202,7 +203,8 @@
             Pembayaran
         </x-nav-link>
         <x-nav-link
-            href="#"
+            href="{{ route('rapot') }}"
+            :active="request()->routeIs('rapot')"
             variant="mobile"
             class="block"
         >

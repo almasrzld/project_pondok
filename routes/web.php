@@ -7,12 +7,13 @@ use App\Http\Controllers\Dashboard\SantriController;
 use App\Http\Controllers\Dashboard\PembayaranController as DashboardPembayaranController;
 use App\Http\Controllers\Dashboard\JenisPembayaranController;
 use App\Http\Controllers\Dashboard\GalleryController as DashboardGalleryController;
-use App\Http\Controllers\Dashboard\RapotController;
+use App\Http\Controllers\Dashboard\RapotController as DashboardRapotController;
 use App\Http\Controllers\Dashboard\SemesterController;
 use App\Http\Controllers\Dashboard\AkunController;
 use App\Http\Controllers\Base\GalleryController as BaseGalleryController;
 use App\Http\Controllers\Base\PendaftaranController;
 use App\Http\Controllers\Base\PembayaranController as BasePembayaranController;
+use App\Http\Controllers\Base\RapotController as BaseRapotController;
 use App\Http\Controllers\Base\ProfilController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -50,6 +51,11 @@ Route::middleware('auth')->group(function () {
         ->name('pembayaran');
     Route::post('/pembayaran', [BasePembayaranController::class, 'store'])
         ->name('pembayaran.store');
+
+    Route::get('/rapot', [BaseRapotController::class, 'index'])
+        ->name('rapot');
+    Route::get('/rapot/print', [BaseRapotController::class, 'print'])
+        ->name('rapot.print');
 
     Route::get('/profile', [ProfilController::class, 'index'])
         ->name('profile.index');
@@ -99,9 +105,9 @@ Route::middleware(['auth', 'role:admin'])
         Route::resource('gallery', DashboardGalleryController::class)
             ->except(['show', 'create']);
 
-        Route::get('/rapot/print', [RapotController::class, 'print'])
+        Route::get('/rapot/print', [DashboardRapotController::class, 'print'])
             ->name('rapot.print');
-        Route::resource('rapot', RapotController::class);
+        Route::resource('rapot', DashboardRapotController::class);
 
         Route::resource('semester', SemesterController::class);
 
