@@ -99,6 +99,8 @@ Route::middleware(['auth', 'role:admin'])
         Route::resource('gallery', DashboardGalleryController::class)
             ->except(['show', 'create']);
 
+        Route::get('/rapot/print', [RapotController::class, 'print'])
+            ->name('rapot.print');
         Route::resource('rapot', RapotController::class);
 
         Route::resource('semester', SemesterController::class);

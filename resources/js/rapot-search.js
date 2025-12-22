@@ -1,10 +1,21 @@
-window.rapotSearch = function () {
+window.rapotSearch = function (printBaseUrl) {
     return {
         search: "",
         semester_id: "",
+        printBaseUrl,
 
         init() {
             // optional
+        },
+
+        get printUrl() {
+            const params = new URLSearchParams();
+
+            if (this.search) params.append("search", this.search);
+            if (this.semester_id)
+                params.append("semester_id", this.semester_id);
+
+            return `${this.printBaseUrl}?${params.toString()}`;
         },
 
         fetchData() {
@@ -27,6 +38,7 @@ window.rapotSearch = function () {
                     if (table) {
                         document.querySelector("#rapot-table").innerHTML =
                             table.innerHTML;
+                        Alpine.initTree(target);
                     }
                 });
         },

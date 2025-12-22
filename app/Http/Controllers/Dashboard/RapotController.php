@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Http\Controllers\Controller;
 use App\Models\Rapot;
 use App\Models\SantriDetail;
@@ -145,5 +147,29 @@ class RapotController extends Controller
         $rapot->delete();
         toastr()->success('Rapot berhasil dihapus');
         return back();
+    }
+
+    public function print(Request $request)
+    {
+        $rapot = Rapot::with(['santri.user', 'semester'])
+            ->when($request->semester_id, function ($q) use ($request) {
+                $q->where('semester_id', $request->semester_id);
+            })
+            ->get();
+
+        $semester = Semester::find($request->semester_id);
+
+        $html = view('pages.dashboard.rapot.print', compact('rapot', 'semester'))->render();
+
+        $options = new Options();
+        $options->set('isRemoteEnabled', true);
+        $options->set('defaultFont', 'DejaVu Sans');
+
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        return $dompdf->stream('rapot-santri.pdf');
     }
 }
