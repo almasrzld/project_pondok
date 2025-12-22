@@ -149,9 +149,10 @@ if (auth()->user()->role !== $role) {
 ## 🚀 Cara Menjalankan Project
 
 ```bash
-git clone https://github.com/username/darul-ulum.git
+git clone https://github.com/almasrzld/darul-ulum.git
 cd darul-ulum
 composer install
+npm install
 cp .env.example .env
 php artisan key:generate
 php artisan migrate --seed

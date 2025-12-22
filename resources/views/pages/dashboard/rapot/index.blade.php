@@ -76,7 +76,7 @@
                     <td class="px-4 py-3">{{ $rapot->firstItem() + $loop->index }}</td>
 
                     <td class="px-4 py-3 font-medium">
-                        {{ $item->santri->user->name }} - {{ $item->santri->nisn }}
+                        {{ $item->santri->user->name ?? 'Akun Dihapus' }} | {{ $item->santri->nisn ?? '-' }}
                     </td>
 
                     <td class="px-4 py-3">{{ $item->semester->nama }} {{ $item->semester->tahun_ajaran }}</td>
@@ -101,8 +101,8 @@
                                 </x-slot>
 
                                 <div class="space-y-3 text-sm text-gray-700">
-                                    <p><strong>Nama Santri:</strong> {{ $item->santri->user->name }}</p>
-                                    <p><strong>NISN:</strong> {{ $item->santri->nisn }}</p>
+                                    <p><strong>Nama Santri:</strong> {{ $item->santri->user->name ?? 'Akun Dihapus' }}</p>
+                                    <p><strong>NISN:</strong> {{ $item->santri->nisn ?? '-' }}</p>
 
                                     <hr>
 
@@ -145,7 +145,7 @@
 
                                 <p class="text-sm mb-4">
                                     Yakin ingin menghapus rapot
-                                    <strong>{{ $item->santri->user->name }}</strong>
+                                    <strong>{{ $item->santri->user->name ?? 'Akun Dihapus' }}</strong>
                                     untuk
                                     <strong>{{ $item->semester->nama }} {{ $item->semester->tahun_ajaran }}</strong>?
                                 </p>

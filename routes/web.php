@@ -111,6 +111,6 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::resource('semester', SemesterController::class);
 
-        Route::get('/akun', [AkunController::class, 'index'])
-            ->name('akun.index');
+        Route::resource('akun', AkunController::class)
+            ->except(['show']);
     });

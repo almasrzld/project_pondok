@@ -64,11 +64,11 @@
                     </td>
 
                     <td class="px-4 py-3 font-medium text-gray-800">
-                        {{ $item->santri->user->name }}
+                        {{ $item->santri->user->name ?? 'Akun Dihapus' }}
                     </td>
 
                     <td class="px-4 py-3">
-                        {{ $item->santri->nisn }}
+                        {{ $item->santri->nisn ?? '-' }}
                     </td>
 
                     <td class="px-4 py-3">
@@ -120,8 +120,8 @@
 
                                 <div class="space-y-3 text-sm text-gray-700">
 
-                                    <p><strong>Nama Santri:</strong> {{ $item->santri->user->name }}</p>
-                                    <p><strong>NISN:</strong> {{ $item->santri->nisn }}</p>
+                                    <p><strong>Nama Santri:</strong> {{ $item->santri->user->name ?? 'Akun Dihapus' }}</p>
+                                    <p><strong>NISN:</strong> {{ $item->santri->nisn ?? '-' }}</p>
 
                                     <hr>
 
@@ -208,7 +208,7 @@
 
                                 <p class="text-sm mb-4">
                                     Yakin ingin menghapus pembayaran
-                                    <strong>{{ $item->santri->user->name }}</strong>
+                                    <strong>{{ $item->santri->user->name ?? 'Akun Dihapus' }}</strong>
                                     untuk
                                     <strong>{{ $item->jenisPembayaran->nama ?? '-' }}</strong>
                                     ({{ $item->bulan }} {{ $item->tahun }})?
